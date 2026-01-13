@@ -1,20 +1,86 @@
-html, body, #app { height: 100%; margin: 0; }
-#app { position: relative; }
-#c { width: 100vw; height: 100vh; display: block; background: #111; }
-
-#hud {
-  position: absolute; top: 12px; left: 12px;
-  display: grid; gap: 10px;
-  padding: 12px 12px; border-radius: 12px;
-  background: rgba(0,0,0,0.60); color: #fff;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  font-size: 13px;
-  min-width: 260px;
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.row { display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; }
-label { opacity: 0.9; }
-select, button, input { font: inherit; }
-button { padding: 6px 10px; cursor: pointer; }
-hr { border: 0; height: 1px; background: rgba(255,255,255,0.15); margin: 2px 0; }
-.hint, .hint2 { opacity: 0.8; max-width: 340px; line-height: 1.3; }
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: #0b0d10;
+}
+
+/* Fullscreen WebGL canvas */
+#c {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+/* HUD panel */
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 340px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.70);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.92);
+}
+
+/* Controls layout */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.row label {
+  min-width: 86px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Make inputs fill nicely */
+.row select {
+  flex: 1;
+  height: 30px;
+}
+
+.row input[type="range"] {
+  flex: 1;
+}
+
+.row input[type="checkbox"] {
+  transform: scale(1.1);
+}
+
+/* Dividers */
+hr {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 12px 0;
+}
+
+/* Optional: nicer scrollbar */
+#hud::-webkit-scrollbar { width: 10px; }
+#hud::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+}
+#hud::-webkit-scrollbar-track { background: transparent; }
